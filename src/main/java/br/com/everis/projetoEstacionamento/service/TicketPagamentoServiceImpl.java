@@ -1,6 +1,7 @@
 package br.com.everis.projetoEstacionamento.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,14 +18,17 @@ public class TicketPagamentoServiceImpl implements TicketPagamentoService {
 	TicketPagamentoRepository ticketPagamentoRepository;
 
 	@Override
-	public List<TicketPagamento> listarTickets() {
+	public List<TicketPagamentoDto> listarTickets() {
 		return ticketPagamentoRepository.findAll();
 	}
 
 	@Override
-	public List<TicketPagamento> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+	public Optional <TicketPagamentoDto> findById(Long id) {
+		Optional <TicketPagamento> ticket =  ticketPagamentoRepository.findById(id).get();
+		 return 
+		
+//		List<Topico> topicos = topicoRepository.findByCursoNome(nomeCurso);
+//		return TopicoDto.converter(topicos);
 	}
 
 	@Override

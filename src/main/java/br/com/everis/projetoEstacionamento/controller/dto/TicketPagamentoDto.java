@@ -1,5 +1,8 @@
 package br.com.everis.projetoEstacionamento.controller.dto;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import br.com.everis.projetoEstacionamento.model.TicketPagamento;
 
 public class TicketPagamentoDto {
@@ -36,6 +39,10 @@ public class TicketPagamentoDto {
 
 	public Long getId() {
 		return id;
+	}
+	
+	public static List<TicketPagamentoDto> converter(List<TicketPagamento> ticketsPagamento) {
+		return ticketsPagamento.stream().map(TicketPagamentoDto::new).collect(Collectors.toList());
 	}
 
 }

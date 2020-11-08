@@ -1,6 +1,5 @@
 package br.com.everis.projetoEstacionamento.model;
 
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 import javax.persistence.Entity;
