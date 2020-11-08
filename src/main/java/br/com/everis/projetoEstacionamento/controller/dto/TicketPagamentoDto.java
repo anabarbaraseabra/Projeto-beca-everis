@@ -1,5 +1,6 @@
 package br.com.everis.projetoEstacionamento.controller.dto;
 
+import java.time.LocalTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -9,8 +10,8 @@ public class TicketPagamentoDto {
 
 	private Long id;
 	private String placa;
-	private int horaEntrada;
-	private int horaSaida;
+	private LocalTime horaEntrada;
+	private LocalTime horaSaida;
 	private double TotalPagamento;
 
 	public TicketPagamentoDto(TicketPagamento ticket) {
@@ -25,11 +26,11 @@ public class TicketPagamentoDto {
 		return placa;
 	}
 
-	public int getHoraEntrada() {
+	public LocalTime getHoraEntrada() {
 		return horaEntrada;
 	}
 
-	public int getHoraSaida() {
+	public LocalTime getHoraSaida() {
 		return horaSaida;
 	}
 

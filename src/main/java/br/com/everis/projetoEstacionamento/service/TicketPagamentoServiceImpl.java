@@ -1,14 +1,15 @@
 package br.com.everis.projetoEstacionamento.service;
 
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.everis.projetoEstacionamento.controller.dto.TicketEntradaDto;
 import br.com.everis.projetoEstacionamento.controller.dto.TicketPagamentoDto;
 import br.com.everis.projetoEstacionamento.controller.form.AtualizaTicketForm;
+import br.com.everis.projetoEstacionamento.controller.form.TicketEntradaForm;
 import br.com.everis.projetoEstacionamento.model.TicketPagamento;
 import br.com.everis.projetoEstacionamento.model.Veiculo;
 import br.com.everis.projetoEstacionamento.repository.TicketPagamentoRepository;
@@ -18,6 +19,7 @@ public class TicketPagamentoServiceImpl implements TicketPagamentoService {
 
 	@Autowired
 	TicketPagamentoRepository ticketPagamentoRepository;
+	VeiculoServiceImpl veiculoServiceImpl;
 
 	@Override
 	public List<TicketPagamento> listarTickets(){
@@ -36,13 +38,12 @@ public class TicketPagamentoServiceImpl implements TicketPagamentoService {
 			ticketPagamento.setTotalPagamento(ticketPagamento.getHoraSaida());
 			return new TicketPagamentoDto(ticketPagamento);
 	}
-
+	
+	
 	@Override
-	public TicketEntradaDto gerarTicketEntrada(TicketEntradaDto ticketEntradaDto, Veiculo veiculo) {
-		TicketPagamento ticketPagamento = new TicketPagamento();
-		ticketPagamento.setHoraEntrada(ticketEntradaDto.getHoraEntrada());
-		ticketPagamento.setVeiculo(veiculo);
-		return new TicketEntradaDto(ticketPagamento);
+	public TicketPagamento gerarTicketEntrada (TicketEntradaForm form) {
+		Veiculo veiculo = veiculoServiceImpl.buscarPelaPlaca(form.getPlaca());
+		return new TicketPagamento(form.getId(),LocalTime.now(), veiculo);
 	}
 
 	

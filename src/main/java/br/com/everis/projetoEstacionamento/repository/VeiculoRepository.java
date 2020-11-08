@@ -8,4 +8,6 @@ import br.com.everis.projetoEstacionamento.model.Veiculo;
 @Repository
 public interface VeiculoRepository extends JpaRepository<Veiculo, Long>{
 
+	public Veiculo findByPlaca(String placa);
+
 }

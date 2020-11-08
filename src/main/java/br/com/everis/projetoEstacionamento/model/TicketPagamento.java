@@ -1,5 +1,7 @@
 package br.com.everis.projetoEstacionamento.model;
 
+import java.time.LocalTime;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,13 +15,19 @@ public class TicketPagamento {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private int horaEntrada;
-	private int horaSaida;
+	private LocalTime horaEntrada;
+	private LocalTime horaSaida;
 	private double precoFracao = 3.5;
 	@OneToOne
 	@JoinColumn(name = "id_veiculo")
 	private Veiculo veiculo;
 	private double totalPagamento;
+
+	public TicketPagamento(Long id, LocalTime horaEntrada, Veiculo veiculo) {
+		this.id = id;
+		this.horaEntrada = horaEntrada;
+		this.veiculo = veiculo;
+	}
 
 	public Long getId() {
 		return id;
@@ -29,19 +37,19 @@ public class TicketPagamento {
 		this.id = id;
 	}
 
-	public int getHoraEntrada() {
+	public LocalTime getHoraEntrada() {
 		return horaEntrada;
 	}
 
-	public void setHoraEntrada(int horaEntrada) {
+	public void setHoraEntrada(LocalTime horaEntrada) {
 		this.horaEntrada = horaEntrada;
 	}
 
-	public int getHoraSaida() {
+	public LocalTime getHoraSaida() {
 		return horaSaida;
 	}
 
-	public void setHoraSaida(int horaSaida) {
+	public void setHoraSaida(LocalTime horaSaida) {
 		this.horaSaida = horaSaida;
 	}
 
@@ -57,8 +65,8 @@ public class TicketPagamento {
 		this.veiculo = veiculo;
 	}
 
-	public void setTotalPagamento(int horaSaida) {
-		double fracao = ((horaSaida - this.horaEntrada) / 60) / 15;
+	public void setTotalPagamento(LocalTime horaSaida) {
+		double fracao = ((horaSaida.getSecond() - this.horaEntrada.getSecond()) / 60) / 15;
 		if (fracao > (int) fracao) {
 			fracao = (int) fracao + 1;
 		}

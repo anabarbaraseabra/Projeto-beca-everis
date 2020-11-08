@@ -1,11 +1,17 @@
 package br.com.everis.projetoEstacionamento.controller.form;
 
-import java.time.LocalTime;
-
 public class TicketEntradaForm {
 
+	private Long id;
 	private String placa;
-	private int horaEntrada = LocalTime.now().getSecond();
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public String getPlaca() {
 		return placa;
@@ -13,14 +19,6 @@ public class TicketEntradaForm {
 
 	public void setPlaca(String placa) {
 		this.placa = placa;
-	}
-
-	public int getHoraEntrada() {
-		return horaEntrada;
-	}
-
-	public void setHoraEntrada(int horaEntrada) {
-		this.horaEntrada = horaEntrada;
 	}
 
 }

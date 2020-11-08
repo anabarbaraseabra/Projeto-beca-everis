@@ -7,13 +7,13 @@ import br.com.everis.projetoEstacionamento.repository.TicketPagamentoRepository;
 
 public class AtualizaTicketForm {
 
-	private int horaSaida = (LocalTime.now().toSecondOfDay());
+	private LocalTime horaSaida = (LocalTime.now());
 
-	public int getHoraSaida() {
+	public LocalTime getHoraSaida() {
 		return horaSaida;
 	}
 
-	public void setHoraSaida(int horaSaida) {
+	public void setHoraSaida(LocalTime horaSaida) {
 		this.horaSaida = horaSaida;
 	}
 

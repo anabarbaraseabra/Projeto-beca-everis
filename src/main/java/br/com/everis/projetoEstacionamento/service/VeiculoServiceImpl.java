@@ -4,10 +4,12 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import br.com.everis.projetoEstacionamento.model.Veiculo;
 import br.com.everis.projetoEstacionamento.repository.VeiculoRepository;
 
+@Service
 public class VeiculoServiceImpl implements VeiculoService {
 
 	@Autowired
@@ -20,8 +22,8 @@ public class VeiculoServiceImpl implements VeiculoService {
 	}
 
 	@Override
-	public Optional<Veiculo> buscarPeloId(Long id) {
-		return veiculoRepository.findById(id);
+	public Veiculo buscarPelaPlaca(String placa) {
+		return veiculoRepository.findByPlaca(placa);
 	}
 
 	@Override

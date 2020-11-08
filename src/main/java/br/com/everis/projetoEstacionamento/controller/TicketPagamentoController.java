@@ -9,12 +9,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.everis.projetoEstacionamento.controller.dto.TicketPagamentoDto;
 import br.com.everis.projetoEstacionamento.controller.form.AtualizaTicketForm;
+import br.com.everis.projetoEstacionamento.controller.form.TicketEntradaForm;
 import br.com.everis.projetoEstacionamento.model.TicketPagamento;
+import br.com.everis.projetoEstacionamento.model.Veiculo;
 import br.com.everis.projetoEstacionamento.service.TicketPagamentoServiceImpl;
 
 @RestController
@@ -24,11 +27,11 @@ public class TicketPagamentoController {
 	@Autowired
 	TicketPagamentoServiceImpl ticketPagamentoServiceImpl;
 
-	@PostMapping("/gerarEntrada")
-	public void gerarTicketEntrada(TicketPagamento ticketPagamento) {
-		ticketPagamentoServiceImpl.gerarTicketEntrada(ticketPagamento);
-		
-	}
+//	@PostMapping("/gerarEntrada")
+//	public void gerarTicketEntrada(TicketEntradaForm ticketEntradaDto, Veiculo veiculo) {
+//		ticketPagamentoServiceImpl.gerarTicketEntrada(ticketEntradaDto,veiculo);
+//		
+//	}
 
 	@PutMapping("/gerarTicketSaida/{id}")
 	public ResponseEntity<TicketPagamentoDto> gerarTicketSaida(@PathVariable Long id, AtualizaTicketForm form) {
