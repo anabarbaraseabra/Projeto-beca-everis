@@ -23,8 +23,7 @@ public class TicketPagamento {
 	private Veiculo veiculo;
 	private double totalPagamento;
 
-	public TicketPagamento(Long id, LocalTime horaEntrada, Veiculo veiculo) {
-		this.id = id;
+	public TicketPagamento(LocalTime horaEntrada, Veiculo veiculo) {
 		this.horaEntrada = horaEntrada;
 		this.veiculo = veiculo;
 	}

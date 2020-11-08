@@ -21,30 +21,28 @@ public class TicketPagamentoServiceImpl implements TicketPagamentoService {
 	VeiculoServiceImpl veiculoServiceImpl;
 
 	@Override
-	public List<TicketPagamento> listarTickets(){
+	public List<TicketPagamento> listarTickets() {
 		return ticketPagamentoRepository.findAll();
 	}
 
 	@Override
-	public Optional<TicketPagamento> buscarPeloId(Long id) {
-		return ticketPagamentoRepository.findById(id);
+	public TicketPagamento buscarPeloId(Long id) {
+		return ticketPagamentoRepository.findById(id).get();
 
+	}
+
+	@Override
+	public TicketPagamento gerarTicketEntrada(TicketEntradaForm form) {
+		Veiculo veiculo = veiculoServiceImpl.buscarPelaPlaca(form.getPlaca());
+		return new TicketPagamento(LocalTime.now(), veiculo);
 	}
 
 	@Override
 	public TicketPagamentoDto gerarTicketSaida(Long id) {
-			TicketPagamento ticketPagamento = ticketPagamentoRepository.findById(id).get();
-			ticketPagamento.setHoraSaida(LocalTime.now());
-			ticketPagamento.setTotalPagamento(ticketPagamento.getHoraSaida());
-			return new TicketPagamentoDto(ticketPagamento);
-	}
-	
-	
-	@Override
-	public TicketPagamento gerarTicketEntrada (TicketEntradaForm form) {
-		Veiculo veiculo = veiculoServiceImpl.buscarPelaPlaca(form.getPlaca());
-		return new TicketPagamento(form.getId(),LocalTime.now(), veiculo);
+		TicketPagamento ticketPagamento = ticketPagamentoRepository.findById(id).get();
+		ticketPagamento.setHoraSaida(LocalTime.now());
+		ticketPagamento.setTotalPagamento(ticketPagamento.getHoraSaida());
+		return new TicketPagamentoDto(ticketPagamento);
 	}
 
-	
 }
