@@ -12,43 +12,44 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.alura.forum.controller.dto.TopicoDto;
 import br.com.everis.projetoEstacionamento.controller.dto.TicketPagamentoDto;
 import br.com.everis.projetoEstacionamento.controller.form.AtualizaTicketForm;
 import br.com.everis.projetoEstacionamento.model.TicketPagamento;
 import br.com.everis.projetoEstacionamento.service.TicketPagamentoServiceImpl;
 
 @RestController
-@RequestMapping("/pagamento")
+@RequestMapping("/ticket")
 public class TicketPagamentoController {
 
 	@Autowired
 	TicketPagamentoServiceImpl ticketPagamentoServiceImpl;
 
-	@PostMapping("/gerarTicketEntrada")
-	public void gerarTicketEntrada() {
+	@PostMapping("/gerarEntrada")
+	public void gerarTicketEntrada(TicketPagamento ticketPagamento) {
+		ticketPagamentoServiceImpl.gerarTicketEntrada(ticketPagamento);
+		
 	}
 
 	@PutMapping("/gerarTicketSaida/{id}")
-	public ResponseEntity<TicketPagamentoDto> atualizar(@PathVariable Long id, AtualizaTicketForm form) {
-		Optional<TicketPagamento> ticket = ticketPagamentoServiceImpl.findById(id).get();
+	public ResponseEntity<TicketPagamentoDto> gerarTicketSaida(@PathVariable Long id, AtualizaTicketForm form) {
+		Optional<TicketPagamento> ticket = ticketPagamentoServiceImpl.findById(id);
 		if (ticket.isPresent()) {
-			return ResponseEntity.ok(ticketPagamentoServiceImpl.atualizar(id, form));
+			return ResponseEntity.ok(ticketPagamentoServiceImpl.gerarTicketSaida(id, form));
 		} else {
 			return ResponseEntity.notFound().build();
 		}
 
 	}
-	
+
 	@GetMapping("/buscar/{id}")
-	public TicketPagamentoDto buscarPorId(@PathVariable Long id) {
+	public TicketPagamento buscarPorId(@PathVariable Long id) {
 		return ticketPagamentoServiceImpl.findById(id).get();
 	}
 
-
 	@GetMapping("/listar")
 	public List<TicketPagamentoDto> listarTickets() {
-		return ticketPagamentoServiceImpl.listarTickets();
+		List<TicketPagamento> tickets = ticketPagamentoServiceImpl.listarTickets();
+		return TicketPagamentoDto.converter(tickets);
 	}
 
 }

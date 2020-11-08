@@ -18,25 +18,27 @@ public class TicketPagamentoServiceImpl implements TicketPagamentoService {
 	TicketPagamentoRepository ticketPagamentoRepository;
 
 	@Override
-	public List<TicketPagamentoDto> listarTickets() {
+	public List<TicketPagamento> listarTickets(){
 		return ticketPagamentoRepository.findAll();
 	}
 
 	@Override
-	public Optional <TicketPagamentoDto> findById(Long id) {
-		Optional <TicketPagamento> ticket =  ticketPagamentoRepository.findById(id).get();
-		 return 
-		
-//		List<Topico> topicos = topicoRepository.findByCursoNome(nomeCurso);
-//		return TopicoDto.converter(topicos);
+	public Optional<TicketPagamento> findById(Long id) {
+		return ticketPagamentoRepository.findById(id);
+
 	}
 
 	@Override
-	public TicketPagamentoDto atualizar(Long id, AtualizaTicketForm form) {
-			TicketPagamento ticketPagamento = ticketPagamentoRepository.getOne(id);
-			ticketPagamento.setHoraSaida(form.getHoraSaida());
+	public TicketPagamentoDto gerarTicketSaida(Long id, AtualizaTicketForm form) {
+			TicketPagamento ticketPagamento = form.atualizar(id, ticketPagamentoRepository);
 			ticketPagamento.setTotalPagamento(ticketPagamento.getHoraSaida());
 			return new TicketPagamentoDto(ticketPagamento);
 	}
 
+	@Override
+	public void gerarTicketEntrada(TicketPagamento ticketPagamento) {
+		ticketPagamentoRepository.save(ticketPagamento);
+	}
+
+	
 }
