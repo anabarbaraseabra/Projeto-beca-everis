@@ -10,7 +10,7 @@ import br.com.everis.projetoEstacionamento.model.TicketPagamento;
 public interface TicketPagamentoService {
 	
 	public List<TicketPagamento> listarTickets();
-	public Optional<TicketPagamento> findById(Long id);
+	public Optional<TicketPagamento> buscarPeloId(Long id);
 	public TicketPagamentoDto gerarTicketSaida(Long id, AtualizaTicketForm form);
     public void gerarTicketEntrada(TicketPagamento ticketPagamento);
 		

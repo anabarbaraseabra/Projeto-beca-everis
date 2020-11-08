@@ -16,9 +16,8 @@ public class ClienteServiceImpl implements ClienteService {
 
 	@Override
 	public void salvarCliente(Cliente cliente) {
-		if (cliente == null) {
-			clienteRepository.save(cliente);
-		}
+		clienteRepository.save(cliente);
+		
 	}
 
 	@Override
@@ -28,8 +27,8 @@ public class ClienteServiceImpl implements ClienteService {
 	}
 
 	@Override
-	public void deletarCliente(Cliente cliente) {
-		clienteRepository.delete(cliente);
+	public void deletarCliente(Long id) {
+		clienteRepository.deleteById(id);
 
 	}
 

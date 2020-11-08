@@ -32,7 +32,7 @@ public class TicketPagamentoController {
 
 	@PutMapping("/gerarTicketSaida/{id}")
 	public ResponseEntity<TicketPagamentoDto> gerarTicketSaida(@PathVariable Long id, AtualizaTicketForm form) {
-		Optional<TicketPagamento> ticket = ticketPagamentoServiceImpl.findById(id);
+		Optional<TicketPagamento> ticket = ticketPagamentoServiceImpl.buscarPeloId(id);
 		if (ticket.isPresent()) {
 			return ResponseEntity.ok(ticketPagamentoServiceImpl.gerarTicketSaida(id, form));
 		} else {
@@ -43,7 +43,7 @@ public class TicketPagamentoController {
 
 	@GetMapping("/buscar/{id}")
 	public TicketPagamento buscarPorId(@PathVariable Long id) {
-		return ticketPagamentoServiceImpl.findById(id).get();
+		return ticketPagamentoServiceImpl.buscarPeloId(id).get();
 	}
 
 	@GetMapping("/listar")

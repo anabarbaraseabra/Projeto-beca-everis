@@ -8,7 +8,7 @@ public interface ClienteService {
 	
 	public void salvarCliente(Cliente cliente);
 	public List<Cliente> buscarClientesPeloNome (String nome);
-	public void deletarCliente (Cliente cliente);
+	public void deletarCliente(Long id);
 	public List<Cliente> listarTodos ();
 	
 }

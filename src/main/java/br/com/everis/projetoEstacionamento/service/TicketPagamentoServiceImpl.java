@@ -23,7 +23,7 @@ public class TicketPagamentoServiceImpl implements TicketPagamentoService {
 	}
 
 	@Override
-	public Optional<TicketPagamento> findById(Long id) {
+	public Optional<TicketPagamento> buscarPeloId(Long id) {
 		return ticketPagamentoRepository.findById(id);
 
 	}
