@@ -19,7 +19,6 @@ public class Veiculo {
 	@JoinColumn(name = "id_cliente")
 	private Cliente cliente;
 
-	
 	public Veiculo(String modelo, String placa, Cliente cliente) {
 		this.modelo = modelo;
 		this.placa = placa;
