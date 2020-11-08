@@ -17,10 +17,11 @@ public class TicketPagamento {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private int horaEntrada = (LocalTime.now().toSecondOfDay());
-	private String horaSaida;
+	private int horaSaida = (LocalTime.now().toSecondOfDay());
 	private double precoFracao = 3.5;
 	@OneToOne
 	@JoinColumn(name = "id_veiculo")
+	private double totalPagamento;
 	private Veiculo veiculo;
 
 	public Long getId() {
@@ -39,11 +40,11 @@ public class TicketPagamento {
 		this.horaEntrada = horaEntrada;
 	}
 
-	public String getHoraSaida() {
+	public int getHoraSaida() {
 		return horaSaida;
 	}
 
-	public void setHoraSaida(String horaSaida) {
+	public void setHoraSaida(int horaSaida) {
 		this.horaSaida = horaSaida;
 	}
 
@@ -55,14 +56,15 @@ public class TicketPagamento {
 		this.veiculo = veiculo;
 	}
 
-	public double calculaPagamento(String horaSaida) {
-		int horaSaidaInt = LocalTime.parse(this.horaSaida).toSecondOfDay();
-		double fracao = ((horaSaidaInt - horaEntrada)/60)/15;
+	public double setTotalPagamento(int horaEntrada) {
+		double fracao = ((this.horaSaida - horaEntrada)/60)/15;
 		if(fracao > (int)fracao) {
 			fracao = (int) fracao+1;
 		}
 		double valorTotal = fracao * this.precoFracao;
 		return valorTotal;
 	}
+	
+	
 
 }

@@ -18,7 +18,7 @@ public class TicketPagamentoDto {
 		this.placa = veiculo.getPlaca();
 		this.horaEntrada = ticket.getHoraEntrada();
 		this.horaSaida = ticket.getHoraSaida();
-		//this.TotalPagamento = ticket.calculaPagamento();
+		this.TotalPagamento = ticket.calculaPagamento();
 	}
 
 	public String getPlaca() {
