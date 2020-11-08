@@ -48,6 +48,10 @@ public class TicketPagamento {
 		this.horaSaida = horaSaida;
 	}
 
+	public String getPlacaVeiculo() {
+		return veiculo.getPlaca();
+	}
+	
 	public Veiculo getVeiculo() {
 		return veiculo;
 	}
@@ -56,13 +60,17 @@ public class TicketPagamento {
 		this.veiculo = veiculo;
 	}
 
-	public double setTotalPagamento(int horaEntrada) {
-		double fracao = ((this.horaSaida - horaEntrada)/60)/15;
+	public void setTotalPagamento(int horaSaida) {
+		double fracao = ((horaSaida - this.horaEntrada)/60)/15;
 		if(fracao > (int)fracao) {
 			fracao = (int) fracao+1;
 		}
 		double valorTotal = fracao * this.precoFracao;
-		return valorTotal;
+		this.totalPagamento = valorTotal;
+	}
+	
+	public double getTotalPagamento() {
+		return totalPagamento;
 	}
 	
 	

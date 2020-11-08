@@ -1,24 +1,21 @@
 package br.com.everis.projetoEstacionamento.controller.dto;
 
-import java.time.LocalDateTime;
-
 import br.com.everis.projetoEstacionamento.model.TicketPagamento;
-import br.com.everis.projetoEstacionamento.model.Veiculo;
 
 public class TicketPagamentoDto {
 
 	private Long id;
 	private String placa;
 	private int horaEntrada;
-	private String horaSaida;
+	private int horaSaida;
 	private double TotalPagamento;
 
-	public TicketPagamentoDto(Veiculo veiculo, TicketPagamento ticket) {
+	public TicketPagamentoDto(TicketPagamento ticket) {
 		this.id = ticket.getId();
-		this.placa = veiculo.getPlaca();
+		this.placa = ticket.getPlacaVeiculo();
 		this.horaEntrada = ticket.getHoraEntrada();
 		this.horaSaida = ticket.getHoraSaida();
-		this.TotalPagamento = ticket.calculaPagamento();
+		this.TotalPagamento = ticket.getTotalPagamento();
 	}
 
 	public String getPlaca() {
@@ -29,7 +26,7 @@ public class TicketPagamentoDto {
 		return horaEntrada;
 	}
 
-	public String getHoraSaida() {
+	public int getHoraSaida() {
 		return horaSaida;
 	}
 
