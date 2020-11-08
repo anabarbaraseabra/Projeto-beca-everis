@@ -25,9 +25,8 @@ public class VeiculoServiceImpl implements VeiculoService {
 	}
 
 	@Override
-	public void salvar() {
-		// TODO Auto-generated method stub
-		
+	public void salvarVeiculo(Veiculo veiculo) {
+		veiculoRepository.save(veiculo);
 	}
 
 }

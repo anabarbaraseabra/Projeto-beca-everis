@@ -17,12 +17,11 @@ public class ClienteServiceImpl implements ClienteService {
 	@Override
 	public void salvarCliente(Cliente cliente) {
 		clienteRepository.save(cliente);
-		
+
 	}
 
 	@Override
 	public List<Cliente> buscarClientesPeloNome(String nome) {
-
 		return clienteRepository.findByNome(nome);
 	}
 

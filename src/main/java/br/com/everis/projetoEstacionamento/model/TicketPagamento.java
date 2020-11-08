@@ -1,7 +1,5 @@
 package br.com.everis.projetoEstacionamento.model;
 
-import java.time.LocalTime;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,7 +13,7 @@ public class TicketPagamento {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private int horaEntrada = (LocalTime.now().toSecondOfDay());
+	private int horaEntrada;
 	private int horaSaida;
 	private double precoFracao = 3.5;
 	@OneToOne

@@ -9,7 +9,6 @@ public interface VeiculoService {
 
 	public List <Veiculo> listarTodos();
 	public Optional <Veiculo> buscarPeloId(Long id);
-	public void salvar();
-	
+	public void salvarVeiculo(Veiculo veiculo);
 	
 }

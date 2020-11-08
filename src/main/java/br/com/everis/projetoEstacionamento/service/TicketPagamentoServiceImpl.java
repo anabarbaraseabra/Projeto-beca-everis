@@ -6,9 +6,11 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.everis.projetoEstacionamento.controller.dto.TicketEntradaDto;
 import br.com.everis.projetoEstacionamento.controller.dto.TicketPagamentoDto;
 import br.com.everis.projetoEstacionamento.controller.form.AtualizaTicketForm;
 import br.com.everis.projetoEstacionamento.model.TicketPagamento;
+import br.com.everis.projetoEstacionamento.model.Veiculo;
 import br.com.everis.projetoEstacionamento.repository.TicketPagamentoRepository;
 
 @Service
@@ -36,8 +38,11 @@ public class TicketPagamentoServiceImpl implements TicketPagamentoService {
 	}
 
 	@Override
-	public void gerarTicketEntrada(TicketPagamento ticketPagamento) {
-		ticketPagamentoRepository.save(ticketPagamento);
+	public TicketEntradaDto gerarTicketEntrada(TicketEntradaDto ticketEntradaDto, Veiculo veiculo) {
+		TicketPagamento ticketPagamento = new TicketPagamento();
+		ticketPagamento.setHoraEntrada(ticketEntradaDto.getHoraEntrada());
+		ticketPagamento.setVeiculo(veiculo);
+		return new TicketEntradaDto(ticketPagamento);
 	}
 
 	
