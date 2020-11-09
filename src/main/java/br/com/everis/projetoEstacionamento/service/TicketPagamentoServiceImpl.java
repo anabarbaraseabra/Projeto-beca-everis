@@ -13,13 +13,14 @@ import br.com.everis.projetoEstacionamento.controller.form.TicketEntradaForm;
 import br.com.everis.projetoEstacionamento.model.TicketPagamento;
 import br.com.everis.projetoEstacionamento.model.Veiculo;
 import br.com.everis.projetoEstacionamento.repository.TicketPagamentoRepository;
+import br.com.everis.projetoEstacionamento.repository.VeiculoRepository;
 
 @Service
 public class TicketPagamentoServiceImpl implements TicketPagamentoService {
 
 	@Autowired
 	TicketPagamentoRepository ticketPagamentoRepository;
-	VeiculoServiceImpl veiculoServiceImpl;
+	VeiculoRepository veiculoRepository;
 
 	@Override
 	public List<TicketPagamento> listarTickets() {
@@ -34,7 +35,7 @@ public class TicketPagamentoServiceImpl implements TicketPagamentoService {
 
 	@Override
 	public TicketEntradaDto gerarTicketEntrada(TicketEntradaForm form) {
-		Veiculo veiculo = veiculoServiceImpl.buscarPelaPlaca(form.getPlaca());
+		Veiculo veiculo = veiculoRepository.findByPlaca(form.getPlaca());
 		TicketPagamento ticket = new TicketPagamento(LocalTime.now(), veiculo);
 		ticketPagamentoRepository.save(ticket);
 		return new TicketEntradaDto(ticket);
