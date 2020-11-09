@@ -22,6 +22,10 @@ public class TicketPagamento {
 	@JoinColumn(name = "id_veiculo")
 	private Veiculo veiculo;
 	private double totalPagamento;
+	
+	
+
+	public TicketPagamento() {}
 
 	public TicketPagamento(LocalTime horaEntrada, Veiculo veiculo) {
 		this.horaEntrada = horaEntrada;
