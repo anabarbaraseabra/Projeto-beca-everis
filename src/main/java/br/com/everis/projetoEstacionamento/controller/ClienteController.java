@@ -22,8 +22,8 @@ public class ClienteController {
 	ClienteServiceImpl clienteServiceImpl;
 	
 	@GetMapping("/busca/{nome}")
-	public List<Cliente> buscarClientesPeloNome (@PathVariable String nome) {
-		return clienteServiceImpl.buscarClientesPeloNome(nome);
+	public Cliente buscarPorNome (@PathVariable String nome) {
+		return clienteServiceImpl.buscarPorNome(nome);
 	}
 
 	@PostMapping("/salvar")

@@ -18,6 +18,10 @@ public class Veiculo {
 	@ManyToOne
 	@JoinColumn(name = "id_cliente")
 	private Cliente cliente;
+	
+	
+
+	public Veiculo() {}
 
 	public Veiculo(String modelo, String placa, Cliente cliente) {
 		this.modelo = modelo;

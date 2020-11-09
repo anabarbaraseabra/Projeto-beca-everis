@@ -8,10 +8,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.everis.projetoEstacionamento.controller.dto.TicketEntradaDto;
 import br.com.everis.projetoEstacionamento.controller.dto.TicketPagamentoDto;
+import br.com.everis.projetoEstacionamento.controller.form.TicketEntradaForm;
 import br.com.everis.projetoEstacionamento.model.TicketPagamento;
 import br.com.everis.projetoEstacionamento.service.TicketPagamentoServiceImpl;
 
@@ -22,13 +25,12 @@ public class TicketPagamentoController {
 	@Autowired
 	TicketPagamentoServiceImpl ticketPagamentoServiceImpl;
 
-//	@PostMapping("/gerarEntrada")
-//	public void gerarTicketEntrada(TicketEntradaForm ticketEntradaDto, Veiculo veiculo) {
-//		ticketPagamentoServiceImpl.gerarTicketEntrada(ticketEntradaDto,veiculo);
-//		
-//	}
+	@PutMapping("/entrada")
+	public TicketEntradaDto gerarTicketEntrada(@RequestBody TicketEntradaForm form) {
+		return ticketPagamentoServiceImpl.gerarTicketEntrada(form);
+	}
 
-	@PutMapping("/gerarTicketSaida/{id}")
+	@PutMapping("/saida/{id}")
 	public ResponseEntity<TicketPagamentoDto> gerarTicketSaida(@PathVariable Long id) {
 		Optional<TicketPagamento> ticket = ticketPagamentoServiceImpl.buscarPeloId(id);
 		if (ticket.isPresent()) {

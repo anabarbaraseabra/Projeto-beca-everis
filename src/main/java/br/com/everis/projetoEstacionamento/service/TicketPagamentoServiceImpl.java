@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.everis.projetoEstacionamento.controller.dto.TicketEntradaDto;
 import br.com.everis.projetoEstacionamento.controller.dto.TicketPagamentoDto;
 import br.com.everis.projetoEstacionamento.controller.form.TicketEntradaForm;
 import br.com.everis.projetoEstacionamento.model.TicketPagamento;
@@ -26,15 +27,17 @@ public class TicketPagamentoServiceImpl implements TicketPagamentoService {
 	}
 
 	@Override
-	public TicketPagamento buscarPeloId(Long id) {
-		return ticketPagamentoRepository.findById(id).get();
+	public Optional<TicketPagamento> buscarPeloId(Long id) {
+		return ticketPagamentoRepository.findById(id);
 
 	}
 
 	@Override
-	public TicketPagamento gerarTicketEntrada(TicketEntradaForm form) {
+	public TicketEntradaDto gerarTicketEntrada(TicketEntradaForm form) {
 		Veiculo veiculo = veiculoServiceImpl.buscarPelaPlaca(form.getPlaca());
-		return new TicketPagamento(LocalTime.now(), veiculo);
+		TicketPagamento ticket = new TicketPagamento(LocalTime.now(), veiculo);
+		ticketPagamentoRepository.save(ticket);
+		return new TicketEntradaDto(ticket);
 	}
 
 	@Override

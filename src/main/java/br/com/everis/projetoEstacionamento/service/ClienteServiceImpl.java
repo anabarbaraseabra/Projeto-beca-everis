@@ -21,7 +21,7 @@ public class ClienteServiceImpl implements ClienteService {
 	}
 
 	@Override
-	public List<Cliente> buscarClientesPeloNome(String nome) {
+	public Cliente buscarPorNome (String nome) {
 		return clienteRepository.findByNome(nome);
 	}
 

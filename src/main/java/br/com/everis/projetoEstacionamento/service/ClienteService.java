@@ -7,7 +7,7 @@ import br.com.everis.projetoEstacionamento.model.Cliente;
 public interface ClienteService {
 	
 	public void salvarCliente(Cliente cliente);
-	public List<Cliente> buscarClientesPeloNome (String nome);
+	public Cliente buscarPorNome(String nome);
 	public void deletarCliente(Long id);
 	public List<Cliente> listarTodos ();
 	

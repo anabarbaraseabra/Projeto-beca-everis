@@ -21,7 +21,7 @@ public class VeiculoController {
 	@Autowired
 	VeiculoServiceImpl veiculoServiceImpl;
 
-	@GetMapping("/listarTodos")
+	@GetMapping("/listar")
 	public List<Veiculo> listarTodos() {
 		return veiculoServiceImpl.listarTodos();
 	}
@@ -31,7 +31,7 @@ public class VeiculoController {
 		return veiculoServiceImpl.buscarPelaPlaca(placa);
 	}
 
-	@PostMapping("/salvarVeiculo")
+	@PostMapping("/salvar")
 	public void salvarVeiculo(@RequestBody CadastraVeiculoForm form) {
 		veiculoServiceImpl.salvarVeiculo(form);
 	}

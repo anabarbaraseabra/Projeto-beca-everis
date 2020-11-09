@@ -31,7 +31,7 @@ public class VeiculoServiceImpl implements VeiculoService {
 
 	@Override
 	public void salvarVeiculo(CadastraVeiculoForm form) {
-		Cliente cliente = (Cliente) clienteServiceImpl.buscarClientesPeloNome(form.getNomeCliente());
+		Cliente cliente = (Cliente) clienteServiceImpl.buscarPorNome(form.getNomeCliente());
 		Veiculo veiculo = new Veiculo(form.getModelo(),form.getPlaca(), cliente);
 		veiculoRepository.save(veiculo);
 	}
